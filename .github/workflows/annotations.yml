@@ -1,0 +1,18 @@
+name: annotations
+on: workflow_dispatch
+jobs:
+  annotations:
+    name: ${{ matrix.annotation }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        annotation: [notice, warning, error]
+    steps:
+      - name: annotations
+        run: |
+          echo ::${{ matrix.annotation }}::message
+          echo ::${{ matrix.annotation }} title=title::message
+          echo ::${{ matrix.annotation }} title=title,file=example.ts::message
+          echo ::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5::message
+          echo ::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::message
