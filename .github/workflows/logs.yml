@@ -1,0 +1,144 @@
+name: logs
+on: [workflow_dispatch, pull_request]
+jobs:
+  commands:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: '::notice'
+        run: |
+          echo "::notice::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L9"
+          echo "::notice title=title::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L10"
+          echo "::notice title=title,file=example.ts::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L11"
+          echo "::notice title=title,file=example.ts,line=5::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L12"
+          echo "::notice title=title,file=example.ts,line=5,endLine=7::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L13"
+          echo "::notice title=title,file=example.ts,line=5,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L14"
+          echo "::notice title=title,file=example.ts,line=5,endLine=7,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L15"
+      - name: '::warning'
+        run: |
+          echo "::warning::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L18"
+          echo "::warning title=title::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L19"
+          echo "::warning title=title,file=example.ts::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L20"
+          echo "::warning title=title,file=example.ts,line=5::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L21"
+          echo "::warning title=title,file=example.ts,line=5,endLine=7::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L22"
+          echo "::warning title=title,file=example.ts,line=5,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L23"
+          echo "::warning title=title,file=example.ts,line=5,endLine=7,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L24"
+      - name: '::error'
+        run: |
+          echo "::error::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L27"
+          echo "::error title=title::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L28"
+          echo "::error title=title,file=example.ts::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L29"
+          echo "::error title=title,file=example.ts,line=5::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L30"
+          echo "::error title=title,file=example.ts,line=5,endLine=7::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L31"
+          echo "::error title=title,file=example.ts,line=5,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L32"
+          echo "::error title=title,file=example.ts,line=5,endLine=7,col=7,endColumn=10::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L33"
+      - name: '::group'
+        run: |
+          echo "::group::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L36"
+          echo "inside the group. See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L37"
+          echo "::endgroup::"
+          echo "outside the group. See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L39"
+      - name: '::debug'
+        # Only visible when the ACTIONS_STEP_DEBUG secret is true, or the run is re-run with debug logging enabled.
+        run: |
+          echo "::debug::See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L43"
+      - name: '::add-mask'
+        run: |
+          echo "::add-mask::secret-value"
+          echo "secret-value See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L47"
+  ansi:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: foreground colors
+        run: |
+          printf '\033[30mblack\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L53\n'
+          printf '\033[31mred\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L54\n'
+          printf '\033[32mgreen\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L55\n'
+          printf '\033[33myellow\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L56\n'
+          printf '\033[34mblue\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L57\n'
+          printf '\033[35mmagenta\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L58\n'
+          printf '\033[36mcyan\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L59\n'
+          printf '\033[37mwhite\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L60\n'
+          printf '\033[90mbright black\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L61\n'
+          printf '\033[91mbright red\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L62\n'
+          printf '\033[92mbright green\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L63\n'
+          printf '\033[93mbright yellow\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L64\n'
+          printf '\033[94mbright blue\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L65\n'
+          printf '\033[95mbright magenta\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L66\n'
+          printf '\033[96mbright cyan\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L67\n'
+          printf '\033[97mbright white\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L68\n'
+          printf '\033[39mdefault foreground\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L69\n'
+      - name: background colors
+        run: |
+          printf '\033[40mblack\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L72\n'
+          printf '\033[41mred\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L73\n'
+          printf '\033[42mgreen\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L74\n'
+          printf '\033[43myellow\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L75\n'
+          printf '\033[44mblue\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L76\n'
+          printf '\033[45mmagenta\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L77\n'
+          printf '\033[46mcyan\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L78\n'
+          printf '\033[47mwhite\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L79\n'
+          printf '\033[100mbright black\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L80\n'
+          printf '\033[101mbright red\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L81\n'
+          printf '\033[102mbright green\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L82\n'
+          printf '\033[103mbright yellow\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L83\n'
+          printf '\033[104mbright blue\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L84\n'
+          printf '\033[105mbright magenta\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L85\n'
+          printf '\033[106mbright cyan\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L86\n'
+          printf '\033[107mbright white\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L87\n'
+          printf '\033[49mdefault background\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L88\n'
+      - name: styles
+        run: |
+          printf '\033[1mbold\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L91\n'
+          printf '\033[2mdim\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L92\n'
+          printf '\033[3mitalic\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L93\n'
+          printf '\033[4munderline\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L94\n'
+          printf '\033[5mblink\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L95\n'
+          printf '\033[6mrapid blink\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L96\n'
+          printf '\033[7mreverse\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L97\n'
+          printf '\033[8mhidden\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L98\n'
+          printf '\033[9mstrikethrough\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L99\n'
+          printf '\033[21mdouble underline\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L100\n'
+          printf '\033[53moverline\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L101\n'
+      - name: style resets
+        run: |
+          printf '\033[1mbold\033[22m not bold See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L104\n'
+          printf '\033[3mitalic\033[23m not italic See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L105\n'
+          printf '\033[4munderline\033[24m not underline See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L106\n'
+          printf '\033[7mreverse\033[27m not reverse See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L107\n'
+          printf '\033[9mstrikethrough\033[29m not strikethrough See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L108\n'
+          printf '\033[1;31mbold red, reset only after this\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L109\n'
+          printf '\033[31mred, never reset See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L110\n'
+          printf 'next line, after a missing reset See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L111\n'
+      - name: combined
+        run: |
+          printf '\033[1;31mbold red\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L114\n'
+          printf '\033[4;32munderline green\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L115\n'
+          printf '\033[3;33;44mitalic yellow on blue\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L116\n'
+          printf '\033[1;4;9;35mbold underline strikethrough magenta\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L117\n'
+          printf '\033[31mred \033[1mthen bold \033[4mthen underline\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L118\n'
+          printf '\033[7;31mreverse red\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L119\n'
+      - name: 256 colors
+        run: |
+          printf '\033[38;5;1mcolor 1\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L122\n'
+          printf '\033[38;5;9mcolor 9\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L123\n'
+          printf '\033[38;5;21mcolor 21\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L124\n'
+          printf '\033[38;5;196mcolor 196\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L125\n'
+          printf '\033[38;5;208mcolor 208\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L126\n'
+          printf '\033[38;5;244mcolor 244 (grayscale)\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L127\n'
+          printf '\033[48;5;21mbackground color 21\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L128\n'
+          printf '\033[48;5;208mbackground color 208\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L129\n'
+      - name: true color
+        run: |
+          printf '\033[38;2;255;100;0morange\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L132\n'
+          printf '\033[38;2;0;200;120mgreen\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L133\n'
+          printf '\033[48;2;255;100;0morange background\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L134\n'
+          printf '\033[48;2;0;100;255mblue background\033[0m See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L135\n'
+      - name: other control sequences
+        run: |
+          printf 'tab\tseparated See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L138\n'
+          printf 'carriage return: overwritten\rreplaced See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L139\n'
+          printf 'erase line: \033[2Kgone See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L140\n'
+          printf 'cursor back: abc\033[2Dxy See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L141\n'
+          printf 'hyperlink: \033]8;;https://github.com/actions\033\\link text\033]8;;\033\\ See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L142\n'
+          printf 'bell: \a See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L143\n'
+          printf 'unicode: ✓ ✗ → … 🙂 See: https://github.com/unitario/github-actions-examples/blob/main/.github/workflows/logs.yml#L144\n'
