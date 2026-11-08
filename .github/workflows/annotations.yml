@@ -3,7 +3,7 @@ on: workflow_dispatch
 jobs:
   annotations:
     name: ${{ matrix.annotation }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: annotations
         run: |
-          echo ::${{ matrix.annotation }}::message
-          echo ::${{ matrix.annotation }} title=title::message
-          echo ::${{ matrix.annotation }} title=title,file=example.ts::message
-          echo ::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5::message
-          echo ::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::message
+          echo "::${{ matrix.annotation }}::${{ matrix.annotation }}"
+          echo "::${{ matrix.annotation }} title=title::${{ matrix.annotation }} title=title"
+          echo "::${{ matrix.annotation }} title=title,file=example.ts::${{ matrix.annotation }} title=title,file=example.ts"
+          echo "::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5"
+          echo "::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7"
