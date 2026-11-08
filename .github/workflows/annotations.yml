@@ -2,17 +2,48 @@ name: annotations
 on: workflow_dispatch
 jobs:
   annotations:
-    name: ${{ matrix.annotation }}
     runs-on: ubuntu-24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        annotation: [notice, warning, error]
     steps:
-      - name: annotations
+      - name: notice
+        env:
+          annotation: notice
         run: |
-          echo "::${{ matrix.annotation }}::${{ matrix.annotation }}"
-          echo "::${{ matrix.annotation }} title=title::${{ matrix.annotation }} title=title"
-          echo "::${{ matrix.annotation }} title=title,file=example.ts::${{ matrix.annotation }} title=title,file=example.ts"
-          echo "::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5::${{ matrix.annotation }} title=title,file=example.ts,col=7,line=5"
-          echo "::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::${{ matrix.annotation }} title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7"
+          echo "::$annotation::$annotation"
+          echo "::$annotation title=title::$annotation title=title"
+          echo "::$annotation title=title,file=example.ts::$annotation title=title,file=example.ts"
+          echo "::$annotation title=title,file=example.ts,col=7,line=5::$annotation title=title,file=example.ts,col=7,line=5"
+          echo "::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7"
+      - name: warning
+        env:
+          annotation: warning
+        run: |
+          echo "::$annotation::$annotation"
+          echo "::$annotation title=title::$annotation title=title"
+          echo "::$annotation title=title,file=example.ts::$annotation title=title,file=example.ts"
+          echo "::$annotation title=title,file=example.ts,col=7,line=5::$annotation title=title,file=example.ts,col=7,line=5"
+          echo "::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7"
+      - name: error
+        env:
+          annotation: error
+        run: |
+          echo "::$annotation::$annotation"
+          echo "::$annotation title=title::$annotation title=title"
+          echo "::$annotation title=title,file=example.ts::$annotation title=title,file=example.ts"
+          echo "::$annotation title=title,file=example.ts,col=7,line=5::$annotation title=title,file=example.ts,col=7,line=5"
+          echo "::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7::$annotation title=title,file=example.ts,col=7,endColumn=10,line=5,endLine=7"
+
+      # Per step limit: 10 per level. Each step prints 12.
+      - name: limit step 12 notices
+        run: for i in $(seq 1 12); do echo "::notice::step limit notice $i of 12"; done
+      - name: limit step 12 warnings
+        run: for i in $(seq 1 12); do echo "::warning::step limit warning $i of 12"; done
+      - name: limit step 12 errors
+        run: for i in $(seq 1 12); do echo "::error::step limit error $i of 12"; done
+
+      # Per job limit: 50 in total. Steps above add 15 + 30. These add 30 more.
+      - name: job limit A
+        run: for i in $(seq 1 10); do echo "::warning::job limit A $i of 10"; done
+      - name: job limit B
+        run: for i in $(seq 1 10); do echo "::warning::job limit B $i of 10"; done
+      - name: job limit C
+        run: for i in $(seq 1 10); do echo "::warning::job limit C $i of 10"; done
