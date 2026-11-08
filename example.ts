@@ -2,7 +2,7 @@
 // line 2
 // line 3
 // line 4
-const ddd: number = 11 // edit 2
+const ddd: number = 11 // edit 3
 // line 6
 // line 7
 // line 8
